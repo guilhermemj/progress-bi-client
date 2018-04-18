@@ -5,9 +5,7 @@
 			<span>{{menuItem.text}}</span>
 
 			<span class="pull-right-container">
-				<!-- TODO: entender porque os dois são necessários pro estilo funcionar -->
 				<FontAwesomeIcon icon="angle-left" class="pull-right" />
-				<i class="fa fa-angle-left pull-right"></i>
 			</span>
 		</a>
 
@@ -37,3 +35,12 @@ export default {
 	},
 };
 </script>
+
+<style lang="scss">
+.sidebar-menu li > a > .fa-angle-left,
+.sidebar-menu li > a > .pull-right-container > .fa-angle-left {
+	width: 1em;
+	height: 1em;
+	font-size: 2rem;
+}
+</style>

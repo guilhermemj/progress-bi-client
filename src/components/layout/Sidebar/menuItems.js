@@ -17,6 +17,11 @@ export default [
 		icon: 'link',
 		submenu: [
 			{
+				url: '/',
+				text: 'Local Link in level 2',
+			},
+
+			{
 				url: '//google.com.br',
 				text: 'Link in level 2',
 			},
