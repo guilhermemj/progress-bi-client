@@ -1,12 +1,18 @@
 <template>
-	<div id="dashboard">
+	<MainLayout pageClass="hello-world">
 
-	</div>
+	</MainLayout>
 </template>
 
 <script>
+import MainLayout from '@/layouts/MainLayout';
+
 export default {
 	name: 'Dashboard',
+
+	components: {
+		MainLayout,
+	},
 };
 </script>
 

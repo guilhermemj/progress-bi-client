@@ -1,13 +1,18 @@
 <template>
-	<div id="import-file">
-
+	<MainLayout pageClass="import-file">
 		<button class="btn btn-primary">Importar</button>
-	</div>
+	</MainLayout>
 </template>
 
 <script>
+import MainLayout from '@/layouts/MainLayout';
+
 export default {
 	name: 'Import',
+
+	components: {
+		MainLayout,
+	},
 };
 </script>
 
