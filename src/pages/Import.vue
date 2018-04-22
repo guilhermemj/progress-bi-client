@@ -1,5 +1,5 @@
 <template>
-	<MainLayout pageClass="import-file">
+	<MainLayout pageClass="import-file" page-header="Importar Dados">
 		<button class="btn btn-primary">Importar</button>
 	</MainLayout>
 </template>
