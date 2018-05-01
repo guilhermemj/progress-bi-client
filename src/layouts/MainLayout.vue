@@ -48,5 +48,10 @@ export default {
 			return !!this.pageTitle || !!this.pageDescription;
 		},
 	},
+
+	// Resize window to adjust AdminLTE layout
+	mounted() {
+		this.$nextTick(() => window.jQuery(window).trigger('resize'));
+	},
 };
 </script>
