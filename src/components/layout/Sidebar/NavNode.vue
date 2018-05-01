@@ -39,8 +39,11 @@ export default {
 <style lang="scss">
 .sidebar-menu li > a > .fa-angle-left,
 .sidebar-menu li > a > .pull-right-container > .fa-angle-left {
+	margin-right: 0;
+
 	width: 1em;
 	height: 1em;
+
 	font-size: 2rem;
 }
 </style>

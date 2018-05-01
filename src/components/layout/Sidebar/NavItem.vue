@@ -1,7 +1,7 @@
 <template>
-	<ExternalLink :menuItem="menuItem" v-if="this.isExternalLink" />
+	<NavNode :menuItem="menuItem" v-if="this.hasSubmenu" />
 
-	<NavNode :menuItem="menuItem" v-else-if="this.hasSubmenu" />
+	<ExternalLink :menuItem="menuItem" v-else-if="this.isExternalLink" />
 
 	<InternalLink :menuItem="menuItem" v-else />
 </template>
@@ -14,25 +14,24 @@ import InternalLink from './InternalLink';
 export default {
 	name: 'NavItem',
 
-	props: [
-		'menuItem',
-	],
-
-	data() {
-		return {
-			isExternalLink: (/^(https?:)?\/\//).test(this.menuItem.url),
-			hasSubmenu: !!this.menuItem.submenu,
-		};
-	},
-
 	components: {
 		NavNode,
 		ExternalLink,
 		InternalLink,
 	},
+
+	props: [
+		'menuItem',
+	],
+
+	computed: {
+		hasSubmenu() {
+			return !!this.menuItem.submenu;
+		},
+
+		isExternalLink() {
+			return (/^(https?:)?\/\//).test(this.menuItem.url);
+		},
+	},
 };
 </script>
-
-<style>
-
-</style>

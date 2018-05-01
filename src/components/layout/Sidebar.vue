@@ -1,7 +1,7 @@
 <template>
 	<aside class="main-sidebar">
 		<section class="sidebar">
-			<ul class="sidebar-menu" data-widget="tree">
+			<ul class="sidebar-menu" ref="sidebarTreeview">
 				<!-- <li class="header">HEADER</li> -->
 
 				<NavItem
@@ -21,18 +21,19 @@ import menuItems from '@/components/layout/Sidebar/menuItems';
 export default {
 	name: 'Sidebar',
 
+	components: {
+		NavItem,
+	},
+
 	data() {
 		return {
 			menuItems,
 		};
 	},
 
-	components: {
-		NavItem,
+	mounted() {
+		// Apply AdminLTE tree plugin
+		window.jQuery(this.$refs.sidebarTreeview).tree();
 	},
 };
 </script>
-
-<style>
-
-</style>

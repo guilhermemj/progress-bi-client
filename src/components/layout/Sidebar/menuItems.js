@@ -12,9 +12,8 @@ export default [
 	},
 
 	{
-		url: '#',
 		text: 'Multilevel',
-		icon: 'link',
+		icon: 'tree',
 		submenu: [
 			{
 				url: '/',
@@ -22,8 +21,18 @@ export default [
 			},
 
 			{
-				url: '//google.com.br',
-				text: 'Link in level 2',
+				text: 'Submenu in level 2',
+				submenu: [
+					{
+						url: '/',
+						text: 'Local Link in level 3',
+					},
+
+					{
+						url: '//google.com.br',
+						text: 'Link in level 3',
+					},
+				],
 			},
 
 			{
