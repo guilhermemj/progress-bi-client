@@ -1,5 +1,5 @@
 <template>
-	<MainLayout pageClass="hello-world" page-header="Hello World!" page-description="This is a simple Vue page">
+	<MainLayout page-class="hello-world" page-title="Hello World!" page-description="This is a simple Vue page">
 		<div class="hello">
 			<img src="@/assets/images/logo.png">
 

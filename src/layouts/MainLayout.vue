@@ -6,7 +6,7 @@
 		<div class="content-wrapper">
 			<section class="content-header" v-if="showPageHeader">
 				<h1>
-					{{pageHeader}}
+					{{pageTitle}}
 					<small>{{pageDescription}}</small>
 				</h1>
 			</section>
@@ -32,7 +32,7 @@ export default {
 
 	props: [
 		'pageClass',
-		'pageHeader',
+		'pageTitle',
 		'pageDescription',
 	],
 
@@ -45,7 +45,7 @@ export default {
 
 	computed: {
 		showPageHeader() {
-			return !!this.pageHeader || !!this.pageDescription;
+			return !!this.pageTitle || !!this.pageDescription;
 		},
 	},
 };
