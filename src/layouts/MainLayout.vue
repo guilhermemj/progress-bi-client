@@ -49,8 +49,8 @@ export default {
 		},
 	},
 
-	// Resize window to adjust AdminLTE layout
 	mounted() {
+		// Resize window to adjust AdminLTE layout
 		this.$nextTick(() => window.jQuery(window).trigger('resize'));
 	},
 };
