@@ -19,6 +19,7 @@
 		"@fortawesome/vue-fontawesome": "0.0.22",
 		"admin-lte": "^2.4.3",
 		"bootstrap": "^3.3.7",
+		"chart.js": "^2.7.2",
 		"es6-promise": "^4.2.4",
 		"jquery": "^3.3.1",
 		"vue": "^2.5.2",
