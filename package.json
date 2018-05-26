@@ -1,7 +1,7 @@
 {
 	"name": "progress-bi-client",
 	"version": "1.0.0",
-	"description": "A Vue.js project",
+	"description": "Progress: BI - Client Application",
 	"author": "Guilherme Jacomini <guilhermem.j@hotmail.com>",
 	"private": true,
 	"scripts": {

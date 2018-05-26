@@ -16,7 +16,7 @@
 			</section>
 		</div>
 
-		<Controlbar />
+		<!-- <Controlbar /> -->
 		<AppFooter />
 	</div>
 </template>

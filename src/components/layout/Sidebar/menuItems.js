@@ -11,6 +11,7 @@ export default [
 		icon: 'table',
 	},
 
+	/*
 	{
 		text: 'Multilevel',
 		icon: 'tree',
@@ -47,4 +48,5 @@ export default [
 		text: 'Hello World',
 		icon: 'globe',
 	},
+	*/
 ];
