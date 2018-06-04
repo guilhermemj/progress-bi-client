@@ -1,16 +1,13 @@
-/* eslint-disable import/prefer-default-export */
-export const isCurrentURl = (url) => {
-	if (url === '#') {
-		return false;
-	}
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-	const link = document.createElement('a');
+const getRandomInt = (min = 0, max = 1) => (
+	min + Math.floor(Math.random() * ((max - min) + 1))
+);
 
-	link.href = url;
+const getRandomElement = array => array[getRandomInt(0, array.length - 1)];
 
-	if (link.host !== location.host) {
-		return false;
-	}
-
-	return location.pathname === link.pathname;
+export default {
+	getRandomInt,
+	getRandomElement,
+	sleep,
 };

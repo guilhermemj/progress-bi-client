@@ -1,5 +1,16 @@
+import util from '@/utils';
+
+const getRandomRgba = () => {
+	const red   = util.getRandomInt(0, 255);
+	const green = util.getRandomInt(0, 255);
+	const blue  = util.getRandomInt(0, 255);
+	const alpha = Math.random();
+
+	return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+};
+
 const bar = {
-	type: 'bar',
+	type: 'line',
 
 	data: {
 		labels: ['20545408', '20329812', '20744712', '20849203', '20472912', '20669423'],
@@ -8,34 +19,41 @@ const bar = {
 				label: '2016-1',
 				data: [10, 9, 3, 5, 2, 3],
 				backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)',
-					'rgba(153, 102, 255, 0.2)',
-					'rgba(255, 159, 64, 0.2)',
+					getRandomRgba(),
 				],
 
-				borderColor: [
-					'rgba(255,99,132,1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)',
-					'rgba(153, 102, 255, 1)',
-					'rgba(255, 159, 64, 1)',
+				// borderColor: [
+				// 	getRandomRgba(),
+				// ],
+
+				// borderWidth: 1,
+			},
+			{
+				label: '2016-2',
+				data: [10, 9, 3, 5, 2, 3].map(() => util.getRandomInt(0, 10)),
+				backgroundColor: [
+					getRandomRgba(),
 				],
 
-				borderWidth: 1,
+				// borderColor: [
+				// 	getRandomRgba(),
+				// ],
+
+				// borderWidth: 1,
 			},
 		],
 	},
 
 	options: {
+		showLines: false,
+
 		scales: {
 			yAxes: [
 				{
 					ticks: {
 						beginAtZero: true,
+						min: 0,
+						max: 10,
 					},
 				},
 			],
@@ -153,6 +171,8 @@ const line = {
 				{
 					ticks: {
 						beginAtZero: true,
+						min: 0,
+						max: 10,
 					},
 				},
 			],
@@ -171,13 +191,13 @@ const pie = {
 				label: 'CCOP2N6',
 				data: [8, 15],
 				backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
+					getRandomRgba(),
+					getRandomRgba(),
 				],
 
 				borderColor: [
-					'rgba(255,99,132,1)',
-					'rgba(54, 162, 235, 1)',
+					getRandomRgba(),
+					getRandomRgba(),
 				],
 			},
 		],
