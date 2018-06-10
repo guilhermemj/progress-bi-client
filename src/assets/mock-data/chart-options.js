@@ -1,9 +1,11 @@
-import util from '@/utils';
+const getRandomInt = (min = 0, max = 1) => (
+	min + Math.floor(Math.random() * ((max - min) + 1))
+);
 
 const getRandomRgba = () => {
-	const red   = util.getRandomInt(0, 255);
-	const green = util.getRandomInt(0, 255);
-	const blue  = util.getRandomInt(0, 255);
+	const red   = getRandomInt(0, 255);
+	const green = getRandomInt(0, 255);
+	const blue  = getRandomInt(0, 255);
 	const alpha = Math.random();
 
 	return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
@@ -30,7 +32,7 @@ const bar = {
 			},
 			{
 				label: '2016-2',
-				data: [10, 9, 3, 5, 2, 3].map(() => util.getRandomInt(0, 10)),
+				data: [10, 9, 3, 5, 2, 3].map(() => getRandomInt(0, 10)),
 				backgroundColor: [
 					getRandomRgba(),
 				],

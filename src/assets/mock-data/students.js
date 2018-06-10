@@ -2,8 +2,8 @@ import createMock from './createMock';
 
 export default createMock({
 	id: 'UniqueNumber',
-	usuario_id: 'Number',
 	ra: 'Number',
+	usuario_id: 'Number',
 	usuario: {
 		id: 'UniqueNumber',
 		email: 'String',

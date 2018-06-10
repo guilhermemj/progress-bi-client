@@ -2,16 +2,24 @@ const getRandomInt = (min = 0, max = 1) => (
 	min + Math.floor(Math.random() * ((max - min) + 1))
 );
 
-const getNextUnique = () => {
+const createUniqueId = () => {
 	let id = 0;
 
 	return () => id++;
 };
 
+/* eslint-disable prefer-spread */
+const getRandomString = () => (
+	Array.apply(null, { length: getRandomInt(5, 20) })
+		.map(() => String.fromCharCode(getRandomInt(97, 97 + 25)))
+		.join('')
+);
+/* eslint-enable prefer-spread */
+
 const modelTypeMap = {
-	UniqueNumber: getNextUnique(),
+	UniqueNumber: createUniqueId(),
 	Number: () => getRandomInt(0, 99),
-	String: () => 'batata',
+	String: () => getRandomString(),
 };
 
 // TODO: Try to implement tail recursion

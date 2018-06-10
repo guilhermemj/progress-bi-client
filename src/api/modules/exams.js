@@ -1,5 +1,5 @@
 // import baseRequest from '@/api/baseRequest';
-import mockData from '@/assets/mock-data/results';
+import mockData from '@/assets/mock-data/exams';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 

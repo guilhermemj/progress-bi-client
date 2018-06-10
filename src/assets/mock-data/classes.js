@@ -4,6 +4,6 @@ export default createMock({
 	id: 'UniqueNumber',
 	name: 'String',
 	code: 'String',
-	curso_id: 'UniqueNumber',
 	periodo: 'String',
+	curso_id: 'UniqueNumber',
 }, 20);
