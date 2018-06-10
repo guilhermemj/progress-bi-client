@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import BaseChart from '@/components/dashboard/BaseChart';
+import BaseChart from '@/components/base/BaseChart';
 import teste from '@/assets/mock-data/chart-options';
 
 export default {

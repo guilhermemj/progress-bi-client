@@ -12,6 +12,18 @@
 					</div>
 
 					<div class="box-body">
+						<form class="form">
+							<select class="form-control">
+								<option
+									v-for="item in exams"
+									:key="item.id"
+									:value="item.id"
+								>
+									{{item.name}}
+								</option>
+							</select>
+						</form>
+
 						<BaseChart :chart-config="lineOptions" />
 					</div>
 				</div>
@@ -28,27 +40,15 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="col-xs-12 col-md-6">
-				<div class="box box-default">
-					<div class="box-header">
-						<h2 class="box-title">
-							Test field ({{count}})
-							<button class="btn btn-primary" @click="increment">+</button>
-						</h2>
-					</div>
-
-					<FilteredChart />
-				</div>
-			</div>
 		</div>
 	</MainLayout>
 </template>
 
 <script>
+import { mapGetters as mapStoreGetters } from 'vuex';
+
 import MainLayout from '@/layouts/MainLayout';
-import BaseChart from '@/components/dashboard/BaseChart';
-import FilteredChart from '@/components/dashboard/FilteredChart';
+import BaseChart from '@/components/base/BaseChart';
 import StudentGradesChart from '@/components/dashboard/StudentGradesChart';
 import chartOptions from '@/assets/mock-data/chart-options';
 
@@ -58,7 +58,6 @@ export default {
 	components: {
 		MainLayout,
 		BaseChart,
-		FilteredChart,
 		StudentGradesChart,
 	},
 
@@ -71,15 +70,13 @@ export default {
 	},
 
 	computed: {
-		count() {
-			return this.$store.state.count;
-		},
+		...mapStoreGetters('exams', {
+			exams: 'sortedList',
+		}),
 	},
 
-	methods: {
-		increment() {
-			this.$store.commit('increment');
-		},
+	mounted() {
+		this.$store.dispatch('exams/fetchList');
 	},
 };
 </script>

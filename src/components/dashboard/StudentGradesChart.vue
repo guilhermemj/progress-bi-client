@@ -6,8 +6,14 @@
 
 		<div class="box-body">
 			<form class="form">
-				<select name="" id="" class="form-control" @change="updateChart">
-					<option value="bar" v-for="classObj in classes" :key="classObj.id">bar</option>
+				<select class="form-control" @change="updateChart">
+					<option
+						v-for="classObj in classes"
+						:key="classObj.id"
+						:value="classObj.id"
+					>
+						{{classObj.name}}
+					</option>
 				</select>
 			</form>
 
@@ -17,8 +23,9 @@
 </template>
 
 <script>
-import BaseChart from '@/components/dashboard/BaseChart';
-import api from '@/api';
+import { mapGetters as mapStoreGetters } from 'vuex';
+
+import BaseChart from '@/components/base/BaseChart';
 import chartOptions from '@/assets/mock-data/chart-options';
 
 const BASE_CHART_OPTIONS = {
@@ -48,13 +55,11 @@ export default {
 		BaseChart,
 	},
 
-	data() {
-		return {
-			classes: [],
-		};
-	},
-
 	computed: {
+		...mapStoreGetters('courses', {
+			classes: 'sortedList',
+		}),
+
 		chartConfig() {
 			if (Math.ceil(Math.random())) {
 				return chartOptions.bar;
@@ -72,14 +77,12 @@ export default {
 
 	methods: {
 		updateChart() {
-			api.getResults().then((classes) => {
-				this.classes = classes;
-			});
+
 		},
 	},
 
 	mounted() {
-		this.updateChart();
+		this.$store.dispatch('courses/fetchList');
 	},
 };
 </script>

@@ -4,6 +4,9 @@ import Vue    from 'vue';
 import App    from '@/App';
 import router from '@/router';
 import store  from '@/store';
+import baseRequest from '@/api/baseRequest';
+
+Vue.prototype.$http = baseRequest;
 
 Vue.config.productionTip = false;
 
