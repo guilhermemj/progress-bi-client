@@ -1,5 +1,5 @@
 import baseRequest from '@/api/baseRequest';
-import mockData from '@/assets/mock-data/categories';
+import mockData from '@/assets/mock-data/students';
 
 const useMock = true;
 

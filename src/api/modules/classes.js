@@ -1,5 +1,5 @@
 import baseRequest from '@/api/baseRequest';
-import mockData from '@/assets/mock-data/categories';
+import mockData from '@/assets/mock-data/classes';
 
 const useMock = true;
 
@@ -48,7 +48,7 @@ const getList = async (params = {}) => {
 		})
 	);
 
-	return serverResponse.map(parseReponse);
+	return parseReponse(serverResponse);
 };
 
 export default {

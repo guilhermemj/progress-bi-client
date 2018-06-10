@@ -26,7 +26,7 @@ const mutations = {
 
 const actions = {
 	async fetchList({ commit }, params = {}) {
-		commit('updateList', await api.courses.get(params));
+		commit('updateList', await api.courses.getList(params));
 	},
 };
 
