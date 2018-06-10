@@ -7,7 +7,9 @@ const state = () => ({
 
 const getters = {
 	sortedList({ list }) {
-		return Array.from(list).sort((a, b) => (a.name > b.name ? 1 : -1));
+		return Array.from(list).sort(
+			(a, b) => (a.ra > b.ra ? 1 : -1),
+		);
 	},
 };
 
@@ -24,18 +26,8 @@ const mutations = {
 /* eslint-enable no-param-reassign */
 
 const actions = {
-	async fetchList({ commit }, params) {
-		const studentsList = await api.students.get(params);
-
-		commit('updateList', studentsList.map(
-			rawStudent => ({
-				id: rawStudent.id,
-				ra: rawStudent.ra,
-				name: rawStudent.usuario.nome,
-				email: rawStudent.usuario.email,
-				userId: rawStudent.usuario.id,
-			}),
-		));
+	async fetchList({ commit }, params = {}) {
+		commit('updateList', await api.students.getList(params));
 	},
 };
 

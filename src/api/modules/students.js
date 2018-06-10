@@ -1,15 +1,13 @@
-// import baseRequest from '@/api/baseRequest';
-import mockData from '@/assets/mock-data/students';
+import baseRequest from '@/api/baseRequest';
+import mockData from '@/assets/mock-data/categories';
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const useMock = true;
 
-const get = async (params = {}) => {
-	const allowedKeys = [
-		'ra',
-		'curso_id',
-		'turma_id',
-	];
+const simulateServerDelay = response => new Promise(
+	resolve => setTimeout(() => resolve(response), 1000),
+);
 
+const filterParams = (params = {}, allowedKeys = []) => {
 	const filteredParams = {};
 
 	Object.entries(params).forEach(([key, param]) => {
@@ -18,16 +16,57 @@ const get = async (params = {}) => {
 		}
 	});
 
-	// const students = await baseRequest.get('alunos', {
-	// 	params: filteredParams,
-	// });
+	return filteredParams;
+};
 
-	await sleep(1000);
-	const students = mockData;
+const getList = async (params = {}) => {
+	const allowedKeys = [
+		'ra',
+		'curso_id',
+		'turma_id',
+	];
 
-	return students;
+	const parseReponse = (response) => {
+		const dataList = response;
+
+		return dataList.map(
+			rawItem => ({
+				id: rawItem.id,
+				ra: rawItem.ra,
+
+				user: {
+					id: rawItem.usuario.id,
+					name: rawItem.usuario.nome,
+					email: rawItem.usuario.email,
+				},
+
+				courses: rawItem.cursos.map(
+					rawCourse => ({
+						id: rawCourse.id,
+						name: rawCourse.nome,
+						status: rawCourse.status,
+					}),
+				),
+
+				classes: rawItem.turmas.map(
+					rawClass => ({
+						id: rawClass.id,
+					}),
+				),
+			}),
+		);
+	};
+
+	const serverResponse = (useMock ?
+		await simulateServerDelay(mockData) :
+		await baseRequest.get('alunos', {
+			params: filterParams(params, allowedKeys),
+		})
+	);
+
+	return parseReponse(serverResponse);
 };
 
 export default {
-	get,
+	getList,
 };

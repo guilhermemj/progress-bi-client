@@ -6,7 +6,9 @@ const state = () => ({
 
 const getters = {
 	sortedList({ list }) {
-		return Array.from(list).sort((a, b) => (a.name > b.name ? 1 : -1));
+		return Array.from(list).sort(
+			(a, b) => (a.name > b.name ? 1 : -1),
+		);
 	},
 };
 
@@ -23,18 +25,8 @@ const mutations = {
 /* eslint-enable no-param-reassign */
 
 const actions = {
-	async fetchList({ commit }, params) {
-		const classesList = await api.classes.get(params);
-
-		commit('updateList', classesList.map(
-			rawClass => ({
-				id: rawClass.id,
-				name: rawClass.name,
-				code: rawClass.code,
-				courseId: rawClass.curso_id,
-				period: rawClass.periodo,
-			}),
-		));
+	async fetchList({ commit }, params = {}) {
+		commit('updateList', await api.classes.getList(params));
 	},
 };
 

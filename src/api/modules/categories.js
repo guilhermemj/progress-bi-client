@@ -1,13 +1,13 @@
-// import baseRequest from '@/api/baseRequest';
+import baseRequest from '@/api/baseRequest';
 import mockData from '@/assets/mock-data/categories';
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const useMock = true;
 
-const get = async (params = {}) => {
-	const allowedKeys = [
-		'name',
-	];
+const simulateServerDelay = response => new Promise(
+	resolve => setTimeout(() => resolve(response), 1000),
+);
 
+const filterParams = (params = {}, allowedKeys = []) => {
 	const filteredParams = {};
 
 	Object.entries(params).forEach(([key, param]) => {
@@ -16,16 +16,36 @@ const get = async (params = {}) => {
 		}
 	});
 
-	// const categories = await baseRequest.get('categorias', {
-	// 	params: filteredParams,
-	// });
+	return filteredParams;
+};
 
-	await sleep(1000);
-	const categories = mockData;
+const getList = async (params = {}) => {
+	const allowedKeys = [
+		'name',
+	];
 
-	return categories;
+	// Looks stupid because data is mocked
+	const parseReponse = (response) => {
+		const dataList = response;
+
+		return dataList.map(
+			rawItem => ({
+				id: rawItem.id,
+				name: rawItem.name,
+			}),
+		);
+	};
+
+	const serverResponse = (useMock ?
+		await simulateServerDelay(mockData) :
+		await baseRequest.get('categorias', {
+			params: filterParams(params, allowedKeys),
+		})
+	);
+
+	return parseReponse(serverResponse);
 };
 
 export default {
-	get,
+	getList,
 };

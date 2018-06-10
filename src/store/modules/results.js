@@ -31,37 +31,9 @@ const mutations = {
 };
 /* eslint-enable no-param-reassign */
 
-const parseResponse = rawItem => ({
-	id: rawItem.id,
-	hits: rawItem.acertos,
-	errors: rawItem.erros,
-	total: rawItem.acertos + rawItem.erros,
-
-	exam: {
-		id: rawItem.prova.id,
-		name: rawItem.prova.name,
-		code: rawItem.prova.code,
-		courseId: rawItem.prova.curso_id,
-		classId: rawItem.prova.turma_id,
-	},
-
-	category: {
-		id: rawItem.categoria.id,
-		name: rawItem.categoria.name,
-	},
-
-	student: {
-		id: rawItem.aluno.id,
-		ra: rawItem.aluno.ra,
-		userId: rawItem.aluno.usuario_id,
-	},
-});
-
 const actions = {
-	async fetchList({ commit }, params) {
-		const examsList = await api.results.get(params);
-
-		commit('updateList', examsList.map(parseResponse));
+	async fetchList({ commit }, params = {}) {
+		commit('updateList', await api.results.getList(params));
 	},
 };
 

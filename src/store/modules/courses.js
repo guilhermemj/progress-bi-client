@@ -6,7 +6,9 @@ const state = () => ({
 
 const getters = {
 	sortedList({ list }) {
-		return Array.from(list).sort((a, b) => (a.name > b.name ? 1 : -1));
+		return Array.from(list).sort(
+			(a, b) => (a.name > b.name ? 1 : -1),
+		);
 	},
 };
 
@@ -23,17 +25,8 @@ const mutations = {
 /* eslint-enable no-param-reassign */
 
 const actions = {
-	async fetchList({ commit }, params) {
-		const coursesList = await api.courses.get(params);
-
-		commit('updateList', coursesList.map(
-			// Looks stupid because data is mocked
-			rawCourse => ({
-				id: rawCourse.id,
-				name: rawCourse.name,
-				status: rawCourse.status,
-			}),
-		));
+	async fetchList({ commit }, params = {}) {
+		commit('updateList', await api.courses.get(params));
 	},
 };
 

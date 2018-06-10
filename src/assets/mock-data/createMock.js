@@ -1,3 +1,4 @@
+/* eslint-disable prefer-spread */
 const getRandomInt = (min = 0, max = 1) => (
 	min + Math.floor(Math.random() * ((max - min) + 1))
 );
@@ -8,13 +9,11 @@ const createUniqueId = () => {
 	return () => id++;
 };
 
-/* eslint-disable prefer-spread */
 const getRandomString = () => (
 	Array.apply(null, { length: getRandomInt(5, 20) })
 		.map(() => String.fromCharCode(getRandomInt(97, 97 + 25)))
 		.join('')
 );
-/* eslint-enable prefer-spread */
 
 const modelTypeMap = {
 	UniqueNumber: createUniqueId(),
@@ -27,12 +26,14 @@ const createMockItem = (model) => {
 	const mockItem = {};
 
 	Object.entries(model).forEach(([key, value]) => {
-		// TODO: handle arrays
-		if (typeof value === 'object') {
+		if (Array.isArray(value)) {
+			mockItem[key] = (
+				Array.apply(null, { length: getRandomInt(0, 15) })
+					.map(() => createMockItem(value[0]))
+			);
+		} else if (typeof value === 'object') {
 			mockItem[key] = createMockItem(value);
-		}
-
-		if (value in modelTypeMap) {
+		} else if (value in modelTypeMap) {
 			mockItem[key] = modelTypeMap[value]();
 		}
 	});
@@ -40,11 +41,9 @@ const createMockItem = (model) => {
 	return mockItem;
 };
 
-/* eslint-disable prefer-spread */
 const createMock = (model, size = 0) => (
 	Array.apply(null, { length: size })
 		.map(() => createMockItem(model))
 );
-/* eslint-enable prefer-spread */
 
 export default createMock;

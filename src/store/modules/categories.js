@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import api from '@/api';
 
 const state = () => ({
@@ -7,7 +6,9 @@ const state = () => ({
 
 const getters = {
 	sortedList({ list }) {
-		return Array.from(list).sort((a, b) => (a.name > b.name ? 1 : -1));
+		return Array.from(list).sort(
+			(a, b) => (a.name > b.name ? 1 : -1),
+		);
 	},
 };
 
@@ -24,16 +25,8 @@ const mutations = {
 /* eslint-enable no-param-reassign */
 
 const actions = {
-	async fetchList({ commit }, params) {
-		const categoriesList = await api.categories.get(params);
-
-		commit('updateList', categoriesList.map(
-			// Looks stupid because data is mocked
-			rawCategory => ({
-				id: rawCategory.id,
-				name: rawCategory.name,
-			}),
-		));
+	async fetchList({ commit }, params = {}) {
+		commit('updateList', await api.categories.getList(params));
 	},
 };
 
