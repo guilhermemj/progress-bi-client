@@ -1,7 +1,7 @@
 import baseRequest from '@/api/baseRequest';
 import mockData from '@/assets/mock-data/courses';
 
-const useMock = true;
+const useMock = false;
 
 const simulateServerDelay = response => new Promise(
 	resolve => setTimeout(() => resolve(response), 1000),
@@ -27,7 +27,7 @@ const getList = async (params = {}) => {
 
 	// Looks stupid because data is mocked
 	const parseReponse = (response) => {
-		const dataList = response;
+		const dataList = response.data;
 
 		return dataList.map(
 			rawItem => ({
@@ -39,7 +39,7 @@ const getList = async (params = {}) => {
 	};
 
 	const serverResponse = (useMock ?
-		await simulateServerDelay(mockData) :
+		await simulateServerDelay({ data: mockData }) :
 		await baseRequest.get('cursos', {
 			params: filterParams(params, allowedKeys),
 		})

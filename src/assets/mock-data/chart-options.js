@@ -2,53 +2,66 @@ const getRandomInt = (min = 0, max = 1) => (
 	min + Math.floor(Math.random() * ((max - min) + 1))
 );
 
-const getRandomRgba = () => {
-	const red   = getRandomInt(0, 255);
-	const green = getRandomInt(0, 255);
-	const blue  = getRandomInt(0, 255);
-	const alpha = Math.random();
+const getRandomColors = (length = 1) => {
+	const borderColor     = [];
+	const backgroundColor = [];
 
-	return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+	for (let index = 0; index < length; index++) {
+		const red   = getRandomInt(0, 255);
+		const green = getRandomInt(0, 255);
+		const blue  = getRandomInt(0, 255);
+
+		borderColor.push(`rgba(${red}, ${green}, ${blue}, .75)`);
+		backgroundColor.push(`rgba(${red}, ${green}, ${blue}, 1)`);
+	}
+
+	return {
+		borderColor,
+		backgroundColor,
+	};
 };
 
 const bar = {
 	type: 'line',
 
 	data: {
-		labels: ['20545408', '20329812', '20744712', '20849203', '20472912', '20669423'],
+		labels: ['2016-1', '2016-2', '2017-1', '2017-2'],
 		datasets: [
 			{
-				label: '2016-1',
-				data: [10, 9, 3, 5, 2, 3],
-				backgroundColor: [
-					getRandomRgba(),
-				],
-
-				// borderColor: [
-				// 	getRandomRgba(),
-				// ],
-
-				// borderWidth: 1,
+				label: '20545408',
+				data: [10, 9, 3, 5],
+				borderWidth: 1,
+				fill: false,
+				...getRandomColors(),
 			},
+
 			{
-				label: '2016-2',
-				data: [10, 9, 3, 5, 2, 3].map(() => getRandomInt(0, 10)),
-				backgroundColor: [
-					getRandomRgba(),
-				],
+				label: '20329812',
+				data: [10, 9, 3, 5].map(() => getRandomInt(0, 10)),
+				borderWidth: 1,
+				fill: false,
+				...getRandomColors(),
+			},
 
-				// borderColor: [
-				// 	getRandomRgba(),
-				// ],
+			{
+				label: '20744712',
+				data: [10, 9, 3, 5].map(() => getRandomInt(0, 10)),
+				borderWidth: 1,
+				fill: false,
+				...getRandomColors(),
+			},
 
-				// borderWidth: 1,
+			{
+				label: '20472912',
+				data: [10, 9, 3, 5].map(() => getRandomInt(0, 10)),
+				borderWidth: 1,
+				fill: false,
+				...getRandomColors(),
 			},
 		],
 	},
 
 	options: {
-		showLines: false,
-
 		scales: {
 			yAxes: [
 				{
@@ -186,21 +199,13 @@ const pie = {
 	type: 'pie',
 
 	data: {
-		labels: ['Conhecimentos gerais', 'Conhecimentos específicos'],
+		labels: ['Acertos - CG', 'Erros - CG', 'Acertos CE', 'Erros - CE'],
 
 		datasets: [
 			{
 				label: 'CCOP2N6',
-				data: [8, 15],
-				backgroundColor: [
-					getRandomRgba(),
-					getRandomRgba(),
-				],
-
-				borderColor: [
-					getRandomRgba(),
-					getRandomRgba(),
-				],
+				data: [8, 15, 1, 2],
+				...getRandomColors(4),
 			},
 		],
 	},

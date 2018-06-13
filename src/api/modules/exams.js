@@ -1,7 +1,7 @@
 import baseRequest from '@/api/baseRequest';
 import mockData from '@/assets/mock-data/exams';
 
-const useMock = true;
+const useMock = false;
 
 const simulateServerDelay = response => new Promise(
 	resolve => setTimeout(() => resolve(response), 1000),
@@ -26,7 +26,7 @@ const getList = async (params = {}) => {
 	];
 
 	const parseReponse = (response) => {
-		const dataList = response;
+		const dataList = response.data;
 
 		return dataList.map(
 			rawItem => ({
@@ -40,7 +40,7 @@ const getList = async (params = {}) => {
 	};
 
 	const serverResponse = (useMock ?
-		await simulateServerDelay(mockData) :
+		await simulateServerDelay({ data: mockData }) :
 		await baseRequest.get('provas', {
 			params: filterParams(params, allowedKeys),
 		})

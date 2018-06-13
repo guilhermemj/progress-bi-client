@@ -6,4 +6,4 @@ export default createMock({
 	code: 'String',
 	curso_id: 'UniqueNumber',
 	turma_id: 'UniqueNumber',
-}, 20);
+}, 5);
