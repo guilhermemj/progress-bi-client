@@ -1,12 +1,17 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue    from 'vue';
-import App    from '@/App';
+import Vue   from 'vue';
+import axios from 'axios';
+
 import router from '@/router';
 import store  from '@/store';
-import baseRequest from '@/api/baseRequest';
+import api    from '@/api';
 
-Vue.prototype.$http = baseRequest;
+import App from '@/App';
+
+// TODO: Implement Vue.use($api) interface
+Vue.prototype.$http = axios;
+Vue.prototype.$api = api;
 
 Vue.config.productionTip = false;
 

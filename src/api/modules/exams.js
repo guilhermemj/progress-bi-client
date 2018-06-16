@@ -21,8 +21,8 @@ const filterParams = (params = {}, allowedKeys = []) => {
 
 const getList = async (params = {}) => {
 	const allowedKeys = [
-		'cursoId',
-		'turmaId',
+		'curso_id',
+		'turma_id',
 	];
 
 	const parseReponse = (response) => {
