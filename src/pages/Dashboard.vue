@@ -14,6 +14,8 @@
 					<div class="box-body">
 						<form class="form">
 							<select class="form-control">
+								<option value="" disabled></option>
+
 								<option
 									v-for="item in exams"
 									:key="item.id"
@@ -32,7 +34,7 @@
 			<div class="col-xs-12 col-md-6">
 				<div class="box box-default">
 					<div class="box-header">
-						<h2 class="box-title">Quantidade de acertos por categoria</h2>
+						<h2 class="box-title">Proporção de acertos por categoria</h2>
 					</div>
 
 					<div class="box-body">
@@ -75,7 +77,7 @@ export default {
 		}),
 	},
 
-	mounted() {
+	created() {
 		this.$store.dispatch('exams/fetchList');
 	},
 };
