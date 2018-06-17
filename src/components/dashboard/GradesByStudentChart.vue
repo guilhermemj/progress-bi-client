@@ -8,14 +8,10 @@
 			<form class="form">
 				<label for="class-select">Escolha uma turma</label>
 				<select id="class-select" class="form-control" v-model="currentClassId">
-					<option value="" disabled></option>
+					<option value="" disabled hidden></option>
 
-					<option
-						v-for="classObj in classesList"
-						:key="classObj.id"
-						:value="classObj.id"
-					>
-						{{classObj.name}}
+					<option v-for="item in classesList" :key="item.id" :value="item.id">
+						{{item.name}}
 					</option>
 				</select>
 			</form>
@@ -81,7 +77,7 @@ const BASE_CHART_OPTIONS = {
 };
 
 export default {
-	name: 'StudentGradesChart',
+	name: 'GradesByStudentChart',
 
 	components: {
 		BaseChart,
@@ -89,7 +85,7 @@ export default {
 
 	data() {
 		return {
-			loading: false,
+			loading: true,
 
 			currentClassId: null,
 			currentStudentsList: [],
@@ -179,8 +175,8 @@ export default {
 			]);
 
 			const resultList = await this.$api.results.getList({
-				prova_id: studentsList.map(exam => exam.id),
-				aluno_id: examsList.map(student => student.id),
+				aluno_id: studentsList.map(student => student.id),
+				prova_id: examsList.map(exam => exam.id),
 			});
 
 			// O estado do componente é atualizado de uma só vez

@@ -2,33 +2,11 @@
 	<MainLayout page-class="hello-world" page-title="Progress: BI">
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
-				<StudentGradesChart />
+				<GradesByClassChart />
 			</div>
 
 			<div class="col-xs-12 col-md-6">
-				<div class="box box-default">
-					<div class="box-header">
-						<h2 class="box-title">Média de notas por turma</h2>
-					</div>
-
-					<div class="box-body">
-						<form class="form">
-							<select class="form-control">
-								<option value="" disabled></option>
-
-								<option
-									v-for="item in exams"
-									:key="item.id"
-									:value="item.id"
-								>
-									{{item.name}}
-								</option>
-							</select>
-						</form>
-
-						<BaseChart :chart-config="lineOptions" />
-					</div>
-				</div>
+				<GradesByStudentChart />
 			</div>
 
 			<div class="col-xs-12 col-md-6">
@@ -51,7 +29,8 @@ import { mapGetters as mapStoreGetters } from 'vuex';
 
 import MainLayout from '@/layouts/MainLayout';
 import BaseChart from '@/components/base/BaseChart';
-import StudentGradesChart from '@/components/dashboard/StudentGradesChart';
+import GradesByStudentChart from '@/components/dashboard/GradesByStudentChart';
+import GradesByClassChart from '@/components/dashboard/GradesByClassChart';
 import chartOptions from '@/assets/mock-data/chart-options';
 
 export default {
@@ -60,7 +39,8 @@ export default {
 	components: {
 		MainLayout,
 		BaseChart,
-		StudentGradesChart,
+		GradesByStudentChart,
+		GradesByClassChart,
 	},
 
 	data() {

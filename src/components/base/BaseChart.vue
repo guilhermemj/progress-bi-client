@@ -8,12 +8,31 @@ import Chart from 'chart.js';
 export default {
 	name: 'BaseChart',
 
-	props: [
-		'chartConfig',
-	],
+	props: {
+		chartConfig: {
+			type: Object,
+			default: null,
+		},
+	},
+
+	data() {
+		return {
+			initialized: false,
+		};
+	},
 
 	watch: {
 		chartConfig() {
+			if (this.chartConfig === null) {
+				return;
+			}
+
+			if (!this.initialized) {
+				this.chart = new Chart(this.$el, { ...this.chartConfig });
+				this.initialized = true;
+				return;
+			}
+
 			const { data, options } = this.chartConfig;
 
 			this.chart.data = { ...data };
@@ -23,7 +42,12 @@ export default {
 	},
 
 	mounted() {
+		if (this.chartConfig === null) {
+			return;
+		}
+
 		this.chart = new Chart(this.$el, { ...this.chartConfig });
+		this.initialized = true;
 	},
 };
 </script>
