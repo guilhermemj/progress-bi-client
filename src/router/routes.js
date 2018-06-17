@@ -1,7 +1,7 @@
 import HelloWorld from '@/pages/HelloWorld';
-import Login      from '@/pages/Login';
-import Dashboard  from '@/pages/Dashboard';
-import Import     from '@/pages/Import';
+import Login from '@/pages/Login';
+import Dashboard from '@/pages/Dashboard';
+import Import from '@/pages/Import';
 
 export default [
 	{

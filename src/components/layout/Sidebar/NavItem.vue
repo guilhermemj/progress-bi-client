@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import NavNode      from './NavNode';
+import NavNode from './NavNode';
 import ExternalLink from './ExternalLink';
 import InternalLink from './InternalLink';
 

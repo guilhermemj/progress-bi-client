@@ -8,7 +8,7 @@ export const repeat = (fn, times = 0) => {
 		return;
 	}
 
-	for (let count = 0; count < times; count++) {
+	for (let count = 0; count < times; count += 1) {
 		fn(count);
 	}
 };

@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import Appbar     from '@/components/layout/Appbar';
-import Sidebar    from '@/components/layout/Sidebar';
+import Appbar from '@/components/layout/Appbar';
+import Sidebar from '@/components/layout/Sidebar';
 import Controlbar from '@/components/layout/Controlbar';
-import AppFooter  from '@/components/layout/Footer';
+import AppFooter from '@/components/layout/Footer';
 
 export default {
 	name: 'MainLayout',

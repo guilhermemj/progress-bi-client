@@ -4,9 +4,13 @@ const getRandomInt = (min = 0, max = 1) => (
 );
 
 const createUniqueId = () => {
-	let id = 0;
+	let id = -1;
 
-	return () => id++;
+	return () => {
+		id += 1;
+
+		return id;
+	};
 };
 
 const getRandomString = () => (

@@ -21,13 +21,14 @@ const filterParams = (params = {}, allowedKeys = []) => {
 
 const getList = async (params = {}) => {
 	const allowedKeys = [
-		'prova_id',
-		'categoria_id',
-		'aluno_id',
+		// 'prova_id',
+		// 'categoria_id',
+		// 'aluno_id',
 	];
 
 	const parseReponse = (response) => {
-		const dataList = response.data;
+		// O backend não seguiu um padrão --'
+		const dataList = Object.values(response.data);
 
 		return dataList.map(
 			rawItem => ({

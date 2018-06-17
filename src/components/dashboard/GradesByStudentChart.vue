@@ -22,40 +22,35 @@
 </template>
 
 <script>
-import { mapGetters as mapStoreGetters } from 'vuex';
+import {
+	mapGetters as mapStoreGetters,
+} from 'vuex';
+
+import {
+	getRandomInt,
+	repeat,
+	sortBy,
+} from '@/utils';
 
 import BaseChart from '@/components/base/BaseChart';
 
-const getRandomInt = (min = 0, max = 1) => (
-	min + Math.floor(Math.random() * ((max - min) + 1))
-);
-
 const getRandomColors = (length = 1) => {
-	const borderColor     = [];
+	const borderColor = [];
 	const backgroundColor = [];
 
-	for (let index = 0; index < length; index++) {
-		const red   = getRandomInt(0, 255);
+	repeat(() => {
+		const red = getRandomInt(0, 255);
 		const green = getRandomInt(0, 255);
-		const blue  = getRandomInt(0, 255);
+		const blue = getRandomInt(0, 255);
 
 		borderColor.push(`rgba(${red}, ${green}, ${blue}, .75)`);
 		backgroundColor.push(`rgba(${red}, ${green}, ${blue}, 1)`);
-	}
+	}, length);
 
 	return {
 		borderColor,
 		backgroundColor,
 	};
-};
-
-const sortBy = (factor) => {
-	const getSortingFactor = (typeof factor === 'function' ?
-		factor :
-		item => item[factor]
-	);
-
-	return (itemA, itemB) => (getSortingFactor(itemA) > getSortingFactor(itemB) ? 1 : -1);
 };
 
 const BASE_CHART_OPTIONS = {

@@ -51,8 +51,6 @@ module.exports = {
 		'indent': ['warn', 'tab'],
 		'linebreak-style': 'off',
 		'max-len': 'off',
-		'no-multi-spaces': 'off',
-		'no-plusplus': 'off',
 		'no-tabs': 'off',
 	}
 }

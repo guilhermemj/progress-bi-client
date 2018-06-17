@@ -10,4 +10,4 @@ import '@fortawesome/fontawesome-free-brands';
 import Vue from 'vue';
 
 Vue.component('FontAwesomeLayers', FontAwesomeLayers);
-Vue.component('FontAwesomeIcon',   FontAwesomeIcon);
+Vue.component('FontAwesomeIcon', FontAwesomeIcon);

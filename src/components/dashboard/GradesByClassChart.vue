@@ -53,7 +53,7 @@ const BASE_CHART_OPTIONS = {
 };
 
 export const getRandomColors = (length = 1) => {
-	const borderColor     = [];
+	const borderColor = [];
 	const backgroundColor = [];
 
 	repeat(() => {

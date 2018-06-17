@@ -3,13 +3,13 @@ const getRandomInt = (min = 0, max = 1) => (
 );
 
 const getRandomColors = (length = 1) => {
-	const borderColor     = [];
+	const borderColor = [];
 	const backgroundColor = [];
 
-	for (let index = 0; index < length; index++) {
-		const red   = getRandomInt(0, 255);
+	for (let index = 0; index < length; index += 1) {
+		const red = getRandomInt(0, 255);
 		const green = getRandomInt(0, 255);
-		const blue  = getRandomInt(0, 255);
+		const blue = getRandomInt(0, 255);
 
 		borderColor.push(`rgba(${red}, ${green}, ${blue}, .75)`);
 		backgroundColor.push(`rgba(${red}, ${green}, ${blue}, 1)`);

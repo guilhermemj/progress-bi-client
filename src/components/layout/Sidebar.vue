@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import NavItem   from '@/components/layout/Sidebar/NavItem';
+import NavItem from '@/components/layout/Sidebar/NavItem';
 import menuItems from '@/components/layout/Sidebar/menuItems';
 
 export default {
