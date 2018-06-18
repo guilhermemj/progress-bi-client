@@ -21,9 +21,9 @@ const filterParams = (params = {}, allowedKeys = []) => {
 
 const getList = async (params = {}) => {
 	const allowedKeys = [
-		// 'prova_id',
-		// 'categoria_id',
-		// 'aluno_id',
+		'prova_id',
+		'categoria_id',
+		'aluno_id',
 	];
 
 	const parseReponse = (response) => {
@@ -69,6 +69,34 @@ const getList = async (params = {}) => {
 	return parseReponse(serverResponse);
 };
 
+const getListByClass = async (classId = null) => {
+	const parseReponse = (response) => {
+		const dataList = response.data;
+
+		return dataList.map(
+			rawItem => ({
+				id: rawItem.id,
+
+				hits: rawItem.acertos,
+				errors: rawItem.erros,
+				total: rawItem.acertos + rawItem.erros,
+
+				category: rawItem.categoria_id,
+				exam: rawItem.prova_id,
+				student: rawItem.aluno_id,
+			}),
+		);
+	};
+
+	const serverResponse = (useMock ?
+		await simulateServerDelay({ data: mockData }) :
+		await baseRequest.get(`/resultados/getResultadosFromTurma/${classId}`)
+	);
+
+	return parseReponse(serverResponse);
+};
+
 export default {
 	getList,
+	getListByClass,
 };

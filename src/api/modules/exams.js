@@ -34,7 +34,14 @@ const getList = async (params = {}) => {
 				name: rawItem.name,
 				code: rawItem.code,
 				courseId: rawItem.curso_id,
-				classId: rawItem.turma_id,
+				classes: rawItem.turmas.map(
+					rawClass => ({
+						id: rawClass.id,
+						code: rawClass.code,
+						name: rawClass.name,
+						period: rawClass.periodo,
+					}),
+				),
 			}),
 		);
 	};

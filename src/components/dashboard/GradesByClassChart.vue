@@ -52,7 +52,7 @@ const BASE_CHART_OPTIONS = {
 	},
 };
 
-export const getRandomColors = (length = 1) => {
+const getRandomColors = (length = 1) => {
 	const borderColor = [];
 	const backgroundColor = [];
 
@@ -82,6 +82,8 @@ export default {
 		return {
 			loading: true,
 			currentCourseId: null,
+			currentExamsList: [],
+			chartData: [],
 		};
 	},
 
@@ -90,94 +92,26 @@ export default {
 			coursesList(state) {
 				return Array.from(state.courses.list).sort(sortBy('name'));
 			},
-
-			classesList: state => state.classes.list,
-			examsList: state => state.exams.list,
-			resultsList: state => state.results.list,
-			studentsList: state => state.students.list,
 		}),
 
-		currentExams() {
-			return this.examsList.filter(
-				exam => exam.classId === this.currentCourseId,
-			);
-		},
-
-		chartData() {
-			/* eslint-disable no-param-reassign */
-			const groupResults = (groupedResults, result) => {
-				const pivot = result.exam.id;
-
-				if (!groupedResults[pivot]) {
-					groupedResults[pivot] = {
-						hits: 0,
-						errors: 0,
-						examId: result.exam.id,
-						examName: result.exam.name,
-					};
-				}
-
-				groupedResults[pivot].hits += result.hits;
-				groupedResults[pivot].errors += result.errors;
-
-				return groupedResults;
-			};
-			/* eslint-disable no-param-reassign */
-
-			const getResultsByClass = (classObj) => {
-				const classStudents = this.studentsList.filter(
-					student => student.classes.some(
-						({ id }) => id === classObj.id,
-					),
-				);
-
-				const classExams = this.examsList.filter(
-					exam => exam.classId === classObj.id,
-				);
-
-				const classResults = this.resultsList.filter(
-					result => (
-						classStudents.some(({ id }) => id === result.student.id) &&
-						classExams.some(({ id }) => id === result.exam.id)
-					),
-				);
-
-				return {
-					code: classObj.code,
-					name: classObj.name,
-					examResults: Object.values(
-						classResults.reduce(groupResults, {}),
-					),
-				};
-			};
-
-			const currentClassesList = this.classesList.filter(
-				({ courseId }) => courseId === this.currentCourseId,
-			);
-
-			return currentClassesList.map(getResultsByClass);
-		},
-
 		chartConfig() {
-			const getGrade = ({ hits, errors }) => {
-				const total = hits + errors;
-
-				return (10 * (hits / total)).toFixed(2);
-			};
+			const getGrade = ({ hits, total }) => (10 * (hits / total)).toFixed(2);
 
 			return {
 				...BASE_CHART_OPTIONS,
 
 				data: {
-					labels: (Array.from(this.currentExams)
+					labels: (Array.from(this.currentExamsList)
 						.sort(sortBy('name'))
 						.map(exam => exam.name)
 					),
+					// Chart data é o array de provas
 					datasets: Array.from(this.chartData).map(
+						// item === exam
 						item => ({
 							label: item.name,
-							data: (Array.from(item.examResults)
-								.sort(sortBy('examName'))
+							data: (Array.from(item.results)
+								.sort(sortBy('exam'))
 								.map(getGrade)
 							),
 
@@ -199,14 +133,75 @@ export default {
 				this.loading = false;
 			}
 		},
+
+		currentCourseId() {
+			this.fecthChartData();
+		},
+	},
+
+	methods: {
+		async fecthChartData() {
+			/* eslint-disable no-param-reassign */
+			const groupResults = (groupedResults, result) => {
+				const pivot = result.exam;
+
+				if (!groupedResults[pivot]) {
+					groupedResults[pivot] = {
+						hits: 0,
+						errors: 0,
+						total: 0,
+						exam: result.exam,
+					};
+				}
+
+				groupedResults[pivot].hits += result.hits;
+				groupedResults[pivot].errors += result.errors;
+				groupedResults[pivot].total += result.total;
+
+				return groupedResults;
+			};
+			/* eslint-disable no-param-reassign */
+
+			// Function start
+			this.loading = true;
+
+			const [currentClasses, currentExams] = await Promise.all([
+				this.$api.classes.getList({
+					curso_id: this.currentCourseId,
+				}),
+
+				this.$api.exams.getList({
+					curso_id: this.currentCourseId,
+				}),
+			]);
+
+			const courseResults = await Promise.all(currentClasses.map(
+				async classObj => ({
+					id: classObj.id,
+					name: classObj.name,
+					results: await this.$api.results.getListByClass(classObj.id),
+				}),
+			));
+
+			const resultsByClass = courseResults.map(
+				item => ({
+					id: item.id,
+					name: item.name,
+					results: Object.values(
+						item.results.reduce(groupResults, {}),
+					),
+				}),
+			);
+
+			this.chartData = resultsByClass;
+			this.currentExamsList = currentExams;
+
+			this.loading = false;
+		},
 	},
 
 	created() {
 		this.$store.dispatch('courses/fetchList');
-		this.$store.dispatch('classes/fetchList');
-		this.$store.dispatch('exams/fetchList');
-		this.$store.dispatch('students/fetchList');
-		this.$store.dispatch('results/fetchList');
 	},
 };
 </script>
