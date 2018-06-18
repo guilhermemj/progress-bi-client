@@ -11,12 +11,12 @@
 		<!-- Header Navbar -->
 		<nav class="navbar navbar-static-top" role="navigation">
 			<!-- Sidebar toggle button-->
-			<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+			<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" v-if="false">
 				<FontAwesomeIcon icon="bars" />
 				<span class="sr-only">Toggle navigation</span>
 			</a>
 			<!-- Navbar Right Menu -->
-			<div class="navbar-custom-menu"  v-if="false">
+			<div class="navbar-custom-menu" v-if="false">
 				<ul class="nav navbar-nav">
 					<!-- Messages: style can be found in dropdown.less-->
 					<li class="dropdown messages-menu">

@@ -1,7 +1,7 @@
 <template>
 	<div id="app" :class="['wrapper', pageClass]">
 		<Appbar />
-		<Sidebar />
+		<!-- <Sidebar /> -->
 
 		<div class="content-wrapper">
 			<section class="content-header" v-if="showPageHeader">
