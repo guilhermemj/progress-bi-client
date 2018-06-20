@@ -1,7 +1,7 @@
-import baseRequest from './baseRequest';
 import modules from './modules';
+import baseRequest from './base-request';
 
 export default {
-	...modules,
-	base: baseRequest,
+  base: baseRequest,
+  ...modules,
 };

@@ -1,53 +1,52 @@
-import baseRequest from '@/api/baseRequest';
-import mockData from '@/assets/mock-data/courses';
+import request from '@/api/base-request';
+import mockData from '@/api/mock-data/courses';
 
 const useMock = false;
 
 const simulateServerDelay = response => new Promise(
-	resolve => setTimeout(() => resolve(response), 1000),
+  resolve => setTimeout(() => resolve(response), 1000),
 );
 
 const filterParams = (params = {}, allowedKeys = []) => {
-	const filteredParams = {};
+  const filteredParams = {};
 
-	Object.entries(params).forEach(([key, param]) => {
-		if (allowedKeys.includes(key)) {
-			filteredParams[key] = param;
-		}
-	});
+  Object.entries(params).forEach(([key, param]) => {
+    if (allowedKeys.includes(key)) {
+      filteredParams[key] = param;
+    }
+  });
 
-	return filteredParams;
+  return filteredParams;
+};
+
+const ALLOWED_KEYS = [
+  'status',
+  'name',
+];
+
+const parseReponse = (response) => {
+  const dataList = response.data;
+
+  return (dataList || []).map(
+    rawItem => ({
+      id: rawItem.id,
+      name: rawItem.name,
+      status: rawItem.status,
+    }),
+  );
 };
 
 const getList = async (params = {}) => {
-	const allowedKeys = [
-		'status',
-		'name',
-	];
+  const serverResponse = (useMock ?
+    await simulateServerDelay({ data: mockData }) :
+    await request.get('cursos', {
+      params: filterParams(params, ALLOWED_KEYS),
+    })
+  );
 
-	// Looks stupid because data is mocked
-	const parseReponse = (response) => {
-		const dataList = response.data;
-
-		return dataList.map(
-			rawItem => ({
-				id: rawItem.id,
-				name: rawItem.name,
-				status: rawItem.status,
-			}),
-		);
-	};
-
-	const serverResponse = (useMock ?
-		await simulateServerDelay({ data: mockData }) :
-		await baseRequest.get('cursos', {
-			params: filterParams(params, allowedKeys),
-		})
-	);
-
-	return parseReponse(serverResponse);
+  return parseReponse(serverResponse);
 };
 
 export default {
-	getList,
+  getList,
 };

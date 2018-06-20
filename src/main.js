@@ -3,28 +3,22 @@
 import Vue from 'vue';
 import axios from 'axios';
 
-import router from '@/router';
-import store from '@/store';
 import api from '@/api';
+import store from '@/store';
+import router from '@/router';
 
 import App from '@/App';
 
-// TODO: Implement Vue.use($api) interface
+Vue.config.productionTip = false;
+
 Vue.prototype.$http = axios;
 Vue.prototype.$api = api;
 
-Vue.config.productionTip = false;
-
-// router.beforeEach((to, from, next) => {
-
-// });
-
 /* eslint-disable no-new */
 new Vue({
-	el: '#app',
-	template: '<App/>',
-	components: { App },
-
-	router,
-	store,
+  el: '#app',
+  store,
+  router,
+  components: { App },
+  template: '<App/>',
 });

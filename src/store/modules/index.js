@@ -6,10 +6,10 @@ import results from './results';
 import students from './students';
 
 export default {
-	categories,
-	classes,
-	courses,
-	exams,
-	results,
-	students,
+  categories,
+  classes,
+  courses,
+  exams,
+  results,
+  students,
 };

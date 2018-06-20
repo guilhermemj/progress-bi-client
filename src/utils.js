@@ -1,29 +1,39 @@
 /* eslint-disable import/prefer-default-export */
 export const getRandomInt = (min = 0, max = 1) => (
-	min + Math.floor(Math.random() * ((max - min) + 1))
+  min + Math.floor(Math.random() * ((max - min) + 1))
 );
 
 export const repeat = (fn, times = 0) => {
-	if (times < 0) {
-		return;
-	}
+  if (times < 0) {
+    return;
+  }
 
-	for (let count = 0; count < times; count += 1) {
-		fn(count);
-	}
+  for (let count = 0; count < times; count += 1) {
+    fn(count);
+  }
 };
 
 export const sortBy = (factor) => {
-	const getSortingFactor = (typeof factor === 'function' ?
-		factor :
-		item => item[factor]
-	);
+  const getSortingFactor = (typeof factor === 'function' ?
+    factor :
+    item => item[factor]
+  );
 
-	return (itemA, itemB) => (getSortingFactor(itemA) > getSortingFactor(itemB) ? 1 : -1);
+  return (itemA, itemB) => (getSortingFactor(itemA) > getSortingFactor(itemB) ? 1 : -1);
+};
+
+export const sumByProp = (propName) => {
+  const getPropValue = (typeof propName === 'function' ?
+    propName :
+    item => item[propName]
+  );
+
+  return (total, nextItem) => total + getPropValue(nextItem);
 };
 
 export default {
-	getRandomInt,
-	repeat,
-	sortBy,
+  getRandomInt,
+  repeat,
+  sortBy,
+  sumByProp,
 };
