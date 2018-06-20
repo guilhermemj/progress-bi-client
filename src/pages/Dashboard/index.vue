@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import GradesByStudentChart from '@/components/dashboard/GradesByStudentChart';
-import GradesByClassChart from '@/components/dashboard/GradesByClassChart';
+import GradesByStudentChart from './components/GradesByStudentChart';
+import GradesByClassChart from './components/GradesByClassChart';
 
 export default {
   name: 'Dashboard',
