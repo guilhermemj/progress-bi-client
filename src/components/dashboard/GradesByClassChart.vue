@@ -1,7 +1,7 @@
 <template>
   <md-card :class="{ loading }">
     <md-card-header>
-      <h2 class="box-title">Média de notas por turma</h2>
+      <h2 class="md-title">Média de notas por turma</h2>
     </md-card-header>
 
     <md-card-content>
