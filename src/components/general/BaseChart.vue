@@ -1,53 +1,53 @@
 <template>
-	<canvas></canvas>
+  <canvas></canvas>
 </template>
 
 <script>
 import Chart from 'chart.js';
 
 export default {
-	name: 'BaseChart',
+  name: 'BaseChart',
 
-	props: {
-		chartConfig: {
-			type: Object,
-			default: null,
-		},
-	},
+  props: {
+    chartConfig: {
+      type: Object,
+      default: null,
+    },
+  },
 
-	data() {
-		return {
-			initialized: false,
-		};
-	},
+  data() {
+    return {
+      initialized: false,
+    };
+  },
 
-	watch: {
-		chartConfig() {
-			if (this.chartConfig === null) {
-				return;
-			}
+  watch: {
+    chartConfig() {
+      if (this.chartConfig === null) {
+        return;
+      }
 
-			if (!this.initialized) {
-				this.chart = new Chart(this.$el, { ...this.chartConfig });
-				this.initialized = true;
-				return;
-			}
+      if (!this.initialized) {
+        this.chart = new Chart(this.$el, { ...this.chartConfig });
+        this.initialized = true;
+        return;
+      }
 
-			const { data, options } = this.chartConfig;
+      const { data, options } = this.chartConfig;
 
-			this.chart.data = { ...data };
-			this.chart.options = { ...options };
-			this.chart.update();
-		},
-	},
+      this.chart.data = { ...data };
+      this.chart.options = { ...options };
+      this.chart.update();
+    },
+  },
 
-	mounted() {
-		if (this.chartConfig === null) {
-			return;
-		}
+  mounted() {
+    if (this.chartConfig === null) {
+      return;
+    }
 
-		this.chart = new Chart(this.$el, { ...this.chartConfig });
-		this.initialized = true;
-	},
+    this.chart = new Chart(this.$el, { ...this.chartConfig });
+    this.initialized = true;
+  },
 };
 </script>

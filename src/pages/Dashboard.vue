@@ -1,29 +1,27 @@
 <template>
-	<MainLayout page-class="hello-world" page-title="Progress: BI">
-		<div class="row">
-			<div class="col-xs-12 col-lg-6">
-				<GradesByClassChart />
-			</div>
+  <div>
+    <div class="md-layout">
+      <div class="md-layout-item md-xsmall-size-100 md-small-size-100">
+        <grades-by-class-chart />
+      </div>
 
-			<div class="col-xs-12 col-lg-6">
-				<GradesByStudentChart />
-			</div>
-		</div>
-	</MainLayout>
+      <div class="md-layout-item md-xsmall-size-100 md-small-size-100">
+        <grades-by-student-chart />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import MainLayout from '@/layouts/MainLayout';
 import GradesByStudentChart from '@/components/dashboard/GradesByStudentChart';
 import GradesByClassChart from '@/components/dashboard/GradesByClassChart';
 
 export default {
-	name: 'Dashboard',
+  name: 'Dashboard',
 
-	components: {
-		MainLayout,
-		GradesByStudentChart,
-		GradesByClassChart,
-	},
+  components: {
+    GradesByStudentChart,
+    GradesByClassChart,
+  },
 };
 </script>

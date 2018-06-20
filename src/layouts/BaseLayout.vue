@@ -1,15 +1,15 @@
 <template>
-  <div class="page-container base-layout">
+  <div class="page-container md-layout-column base-layout">
     <md-app>
       <md-app-toolbar class="md-primary">
-        <md-button class="md-icon-button" @click="showNavigation = !showNavigation">
+        <!-- <md-button class="md-icon-button" @click="showNavigation = !showNavigation">
           <md-icon>menu</md-icon>
-        </md-button>
+        </md-button> -->
 
         <app-toolbar />
       </md-app-toolbar>
 
-      <md-app-drawer md-permanent="clipped" :md-active.sync="showNavigation">
+      <md-app-drawer :md-active.sync="showNavigation">
         <md-list>
           <md-list-item>
             <md-icon>move_to_inbox</md-icon>

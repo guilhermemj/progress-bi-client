@@ -1,12 +1,8 @@
 {
-  "name": "monitor-app",
+  "name": "progress-bi",
   "version": "1.0.0",
-  "description": "Central de Monitoramento Infracommerce",
-  "author": "Infracommerce <ifc.front@infracommerce.com.br>",
-  "contributors": [
-    "Guilherme Jacomini <guilherme.jacomini@infracommerce.com.br>",
-    "Henrique Marques Fernandes <henrique.fernandes@infracommerce.com.br>"
-  ],
+  "description": "Progress: Business Inteligence",
+  "author": "Guilherme Jacomini <guilherme.jacomini@infracommerce.com.br>",
   "private": true,
   "scripts": {
     "start": "npm run dev",
@@ -21,6 +17,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/vue-fontawesome": "^0.0.23",
     "axios": "^0.18.0",
+    "chart.js": "^2.7.2",
     "jwt-decode": "^2.2.0",
     "socket.io-client": "^2.1.1",
     "vue": "^2.5.2",

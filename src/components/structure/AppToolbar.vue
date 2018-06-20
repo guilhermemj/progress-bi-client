@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="md-title">
-      IFC Monitor
+      Progress: BI
     </h1>
   </div>
 </template>

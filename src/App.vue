@@ -42,7 +42,7 @@ export default {
   @import "~vue-material/dist/theme/engine";
 
   @include md-register-theme("default", (
-    primary: md-get-palette-color(amber, 500),
+    primary: md-get-palette-color(blue, 500),
     accent: md-get-palette-color(grey, 700)
   ));
 

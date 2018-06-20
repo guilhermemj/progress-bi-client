@@ -7,11 +7,11 @@ import students from './students';
 import importSheet from './import-sheet';
 
 export default {
-	categories,
-	classes,
-	courses,
-	exams,
-	results,
-	students,
-	importSheet,
+  categories,
+  classes,
+  courses,
+  exams,
+  results,
+  students,
+  importSheet,
 };
