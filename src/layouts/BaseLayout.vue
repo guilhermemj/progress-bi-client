@@ -43,6 +43,8 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="scss">
+  .md-app {
+    min-height: 100vh;
+  }
 </style>

@@ -6,7 +6,7 @@
       </div>
 
       <div class="content-footer">
-        <img src="http://i-3m-dev.a8e.net.br/static/images/logo-infra.png" alt="Powered by Infracommerce">
+        Copyright &copy; 2018 Progress: Business Inteligence
       </div>
     </md-content>
   </div>
@@ -22,7 +22,7 @@ export default {
 .centered-container {
   position: relative;
 
-  height: 100vh;
+  min-height: 100vh;
 
   display: flex;
   align-items: center;
@@ -44,6 +44,8 @@ export default {
   }
 
   .content-footer {
+    position: absolute;
+    width: 100%;
     margin-top: 24px;
   }
 }

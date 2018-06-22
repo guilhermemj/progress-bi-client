@@ -17,7 +17,7 @@ export default [
     component: Login,
     meta: {
       public: true,
-      template: 'empty',
+      template: 'centered',
     },
   },
 

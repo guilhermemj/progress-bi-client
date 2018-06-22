@@ -1,7 +1,7 @@
 <template>
   <div class="login-box">
     <div class="title">
-      <div class="md-title">IFC Monitor</div>
+      <div class="md-title">Progress: BI</div>
     </div>
 
     <div class="actions md-layout md-alignment-center-space-between">

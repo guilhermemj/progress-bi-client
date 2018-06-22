@@ -27,12 +27,18 @@ export default {
     ]),
   },
 
-  method: {
+  methods: {
     changeLayout(nextLayout) {
       if (nextLayout in layouts && layouts[nextLayout] !== this.currentLayout) {
         this.currentLayout = layouts[nextLayout];
       }
     },
+  },
+
+  mounted() {
+    if (this.$route.meta.template) {
+      this.changeLayout(this.$route.meta.template);
+    }
   },
 };
 </script>
