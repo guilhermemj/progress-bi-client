@@ -1,5 +1,5 @@
 <template>
-  <md-card :class="{ loading }">
+  <md-card>
     <md-card-header>
       <h2 class="md-title">Notas por aluno</h2>
     </md-card-header>
@@ -22,7 +22,9 @@
       <BaseChart :chart-config="chartConfig" />
     </md-card-content>
 
-    <md-progress-bar md-mode="indeterminate" class="loader" v-show="loading" />
+    <loading-overlay v-show="loading">
+      <md-progress-spinner md-mode="indeterminate" />
+    </loading-overlay>
   </md-card>
 </template>
 
@@ -37,6 +39,7 @@ import {
   sortBy,
 } from '@/utils';
 
+import LoadingOverlay from '@/components/general/LoadingOverlay';
 import BaseChart from '@/components/general/BaseChart';
 
 const getRandomColors = (length = 1) => {
@@ -80,6 +83,7 @@ export default {
   name: 'GradesByStudentChart',
 
   components: {
+    LoadingOverlay,
     BaseChart,
   },
 
@@ -192,20 +196,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-  .loading::after {
-    content: '';
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    background: #f3f3f3;
-    width: 100%;
-    height: 100%;
-
-    display: block;
-    opacity: .5;
-  };
-</style>
