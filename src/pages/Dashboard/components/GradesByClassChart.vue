@@ -19,7 +19,7 @@
         </md-field>
       </form>
 
-      <BaseChart :chart-config="chartConfig" />
+      <base-chart :chart-config="chartConfig" />
     </md-card-content>
 
     <loading-overlay v-show="loading">
@@ -192,14 +192,18 @@ export default {
         }),
       ));
 
-      const resultsByClass = courseResults.map(
-        item => ({
-          id: item.id,
-          name: item.name,
-          results: Object.values(
-            item.results.reduce(groupResults, {}),
-          ),
-        }),
+      const resultsByClass = (
+        courseResults
+          .filter(item => item.results.length > 0)
+          .map(
+            item => ({
+              id: item.id,
+              name: item.name,
+              results: Object.values(
+                item.results.reduce(groupResults, {}),
+              ),
+            }),
+          )
       );
 
       this.chartData = resultsByClass;

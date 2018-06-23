@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import jwtDecode from 'jwt-decode';
 
-import apiBaseRequest from '@/api/base-request';
+// import apiBaseRequest from '@/api/base-request';
 
 import modules from './modules';
 
@@ -11,13 +11,13 @@ Vue.use(Vuex);
 const loggedIn = window.localStorage.getItem('jwt') || false;
 const user = loggedIn ? jwtDecode(loggedIn) : null;
 
-function initAxios(jwt) {
-  apiBaseRequest.defaults.headers.common.Authorization = `Bearer ${jwt}`;
-}
+// function initAxios(jwt) {
+//   apiBaseRequest.defaults.headers.common.Authorization = `Bearer ${jwt}`;
+// }
 
-if (loggedIn) {
-  initAxios(loggedIn);
-}
+// if (loggedIn) {
+//   initAxios(loggedIn);
+// }
 
 export default new Vuex.Store({
   state: {
@@ -29,7 +29,7 @@ export default new Vuex.Store({
     logIn(state, jwt) {
       state.loggedIn = jwt;
       state.user = jwtDecode(jwt);
-      initAxios(jwt);
+      // initAxios(jwt);
     },
 
     logOut(state) {

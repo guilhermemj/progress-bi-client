@@ -28,11 +28,21 @@ export default {
       }
 
       if (!this.initialized) {
-        this.chart = new Chart(this.$el, { ...this.chartConfig });
-        this.initialized = true;
+        this.createChart();
         return;
       }
 
+      this.updateChart();
+    },
+  },
+
+  methods: {
+    createChart() {
+      this.chart = new Chart(this.$el, { ...this.chartConfig });
+      this.initialized = true;
+    },
+
+    updateChart() {
       const { data, options } = this.chartConfig;
 
       this.chart.data = { ...data };
@@ -46,8 +56,7 @@ export default {
       return;
     }
 
-    this.chart = new Chart(this.$el, { ...this.chartConfig });
-    this.initialized = true;
+    this.createChart();
   },
 };
 </script>

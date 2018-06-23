@@ -10,12 +10,7 @@
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="showNavigation">
-        <md-list>
-          <md-list-item>
-            <md-icon>move_to_inbox</md-icon>
-            <span class="md-list-item-text">Inbox</span>
-          </md-list-item>
-        </md-list>
+        <app-sidebar />
       </md-app-drawer>
 
       <md-app-content>
@@ -27,6 +22,7 @@
 
 <script>
 import AppToolbar from '@/components/structure/AppToolbar';
+import AppSidebar from '@/components/structure/AppSidebar';
 
 export default {
   name: 'BaseLayout',
@@ -39,6 +35,7 @@ export default {
 
   components: {
     AppToolbar,
+    AppSidebar,
   },
 };
 </script>

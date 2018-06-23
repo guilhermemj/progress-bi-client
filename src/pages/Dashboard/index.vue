@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="dashboard">
     <div class="md-layout">
       <div class="md-layout-item md-xsmall-size-100 md-small-size-100">
         <grades-by-class-chart />
@@ -25,3 +25,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  #dashboard {
+    .md-layout-item {
+      margin-bottom: 32px;
+    }
+  }
+</style>

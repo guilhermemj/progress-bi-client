@@ -19,7 +19,7 @@
         </md-field>
       </form>
 
-      <BaseChart :chart-config="chartConfig" />
+      <base-chart :chart-config="chartConfig" />
     </md-card-content>
 
     <loading-overlay v-show="loading">
@@ -137,9 +137,11 @@ export default {
           labels: this.currentExamsList.map(exam => exam.name),
           datasets: this.currentStudentsList.map(
             (student) => {
-              const resultList = this.currentResultsList
-                .filter(result => result.student.id === student.id)
-                .reduce(groupResults, {});
+              const resultList = (
+                this.currentResultsList
+                  .filter(result => result.student.id === student.id)
+                  .reduce(groupResults, {})
+              );
 
               return {
                 label: student.ra,
